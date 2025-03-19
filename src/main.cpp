@@ -11,6 +11,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
     std::ifstream file(filePath);
     if (!file.is_open()) {
         std::cerr << "Failed to open the file " << filePath << std::endl;
+        file.close();
         return false;
     }
 
@@ -18,6 +19,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
     file >> nNodes;
     if (nNodes <= 0) {
         std::cerr << "Number of nodes must be a positive number" << std::endl;
+        file.close();
         return false;
     }
 
@@ -25,6 +27,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
     file >> nEdges;
     if (nEdges < nNodes - 1) {
         std::cerr << "Number of edges must be greater or equal to " << nNodes - 1 << std::endl;
+        file.close();
         return false;
     }
 
@@ -35,6 +38,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
         file >> node1;
         if (node1 < 0 || node1 >= nNodes) {
             std::cerr << "Node number must be in range [0, " << nNodes - 1 << "]" << std::endl;
+            file.close();
             return false;
         }
 
@@ -42,6 +46,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
         file >> node2;
         if (node2 < 0 || node2 >= nNodes) {
             std::cerr << "Node number must be in range [0, " << nNodes - 1 << "]" << std::endl;
+            file.close();
             return false;
         }
 
@@ -52,6 +57,7 @@ bool readGraphAndSourceNode(std::string &filePath, std::vector<std::vector<int>>
     file >> sourceNode;
     if (sourceNode < 0 || sourceNode >= nNodes) {
         std::cerr << "Source node number must be in range [0, " << nNodes - 1 << "]" << std::endl;
+        file.close();
         return false;
     }
 
